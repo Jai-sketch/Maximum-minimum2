@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Minimum and Maximum Values (Without Inbuilt Methods)</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+    }
+    input{
+        padding: 10px;
+        font-size: 16px;
+        margin: 10px;
+    }
+    button {
+        padding: 10px;
+        font-size: 16px;
+        margin: 10px;
+    }
+    button:hover{
+        background-color: dimgrey;
+    }
+    #output {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+    <h2>Find Minimum and Maximum Values (Without Inbuilt Methods)</h2>
+    <label for="numbers">Enter numbers (comma-separated):</label>
+    <input type="text" id="numbers" placeholder="e.g., 5, 3, 8, 1" required>
+    <button onclick="findMinMax()">Find Min/Max</button>
+    <p id="output">Minimum and Maximum values will be displayed here.</p>
+
+    <script>
+        function findMinMax() {
+            var input = document.getElementById('numbers').value;
+            var numbersArray = input.split(',').map(num => parseFloat(num.trim()));
+            
+            
+            numbersArray = numbersArray.filter(num => !isNaN(num));
+            
+            if (numbersArray.length === 0) {
+                document.getElementById('output').textContent = 'Please enter valid numbers.';
+                return;
+            }
+            
+            var minValue = findMinimum(numbersArray);
+            var maxValue = findMaximum(numbersArray);
+            
+            document.getElementById('output').textContent = `Minimum Value: ${minValue}, Maximum Value: ${maxValue}`;
+        }
+
+        function findMinimum(arr) {
+            if (arr.length === 0) return undefined;
+            var min = arr[0];
+            for (var i = 1; i < arr.length; i++) {
+                if (arr[i] < min) {
+                    min = arr[i];
+                }
+            }
+            return min;
+        }
+
+        function findMaximum(arr) {
+            if (arr.length === 0) return undefined;
+            var max = arr[0];
+            for (var i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+    </script>
+</body>
+</html>
